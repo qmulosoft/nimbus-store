@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS local_file;
+DROP TABLE IF EXISTS bucket;
+DROP TABLE IF EXISTS file;
+
+DROP TRIGGER IF EXISTS UpdateFileLastUpdate;
