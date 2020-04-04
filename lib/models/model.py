@@ -125,8 +125,9 @@ class Model(metaclass=ModelMeta):
         return f"SELECT {cls.select_columns()} FROM [{cls.table_name}] WHERE {cls.id.name} = ?"
 
     @classmethod
-    def find_statement(cls, field: Field) -> str:
-        return f"SELECT {cls.select_columns()} FROM [{cls.table_name}] WHERE {field.name} = ?"
+    def find_statement(cls, field: Field=None) -> str:
+        where = f"WHERE {field.name} = ?" if field is not None else ""
+        return f"SELECT {cls.select_columns()} FROM [{cls.table_name}] {where}"
 
     def insert_statement(self, *extra_fields: Field) -> typing.Tuple[str, list]:
         """ Returns a formatted, simple INSERT INTO VALUES statement and parameters
