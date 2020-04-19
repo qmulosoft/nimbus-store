@@ -1,5 +1,6 @@
 import falcon
 
+
 def require(content_type):
     """ A decorator middleware (not a falcon middleware) for enforcing required Accept and Content-Type
     headers based on a provided content-type string. e.g. @require("application/json") """

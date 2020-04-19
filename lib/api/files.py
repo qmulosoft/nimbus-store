@@ -1,6 +1,5 @@
 import falcon
-from ..models.bucket import Bucket
-from ..models.file import File
+from .models.file import File
 from .buckets import validate_bucket
 from .util import require
 from .resource import ApiResource
@@ -19,6 +18,16 @@ def validate_file(next):
         req.context.file = file
         next(self, req, resp, **kwargs)
     return f
+
+
+class FilesResource(ApiResource):
+    """ Manages getting, deleting and updating single File resources """
+
+    @require("application/json")
+    @validate_bucket
+    @validate_file
+    def on_get(self, req: falcon.Request, resp: falcon.Response):
+        resp.media = req.context.file.to_dict()
 
 
 class FileCollectionResource(ApiResource):

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1e28b59d0008a38cd50a9195a1f3fb45ccb7bef864a1a370e5083e72dabc41ee"
+            "sha256": "89a9e8e3614e0f1f9d2d3b6201d8e895ee35b4dec5205894f01df1a29fda462e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -51,6 +51,10 @@
             "markers": "python_version < '3.8'",
             "version": "==1.6.0"
         },
+        "migrate": {
+            "git": "https://github.com/qmulosoft/nimbus-migrate.git",
+            "ref": "5194eb384303349a6d5bdea740099287794d80cd"
+        },
         "more-itertools": {
             "hashes": [
                 "sha256:5dd8bcf33e5f9513ffa06d5ad33d78f31e1931ac9a18f33d37e77a180d393a7c",
@@ -81,10 +85,10 @@
         },
         "pyparsing": {
             "hashes": [
-                "sha256:4c830582a84fb022400b85429791bc551f1f4871c33f23e44f353119e92f969f",
-                "sha256:c342dccb5250c08d45fd6f8b4a559613ca603b57498511740e65cd11a2e7dcec"
+                "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1",
+                "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"
             ],
-            "version": "==2.4.6"
+            "version": "==2.4.7"
         },
         "pytest": {
             "hashes": [

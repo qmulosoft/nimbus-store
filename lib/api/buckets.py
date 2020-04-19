@@ -1,5 +1,5 @@
 import falcon
-from ..models.bucket import Bucket
+from .models.bucket import Bucket
 from .util import require
 from .resource import ApiResource
 import sqlite3
@@ -21,12 +21,6 @@ def validate_bucket(next):
 class BucketResource(ApiResource):
     """ Methods to act on an individual bucket, e.g. getting, editing or deleting """
 
-    def _get_bucket(self, name: str) -> Bucket:
-        cursor = self._db.cursor()
-        stmt = Bucket.find_statement(Bucket.name)
-        r = cursor.execute(stmt, [name])
-        return Bucket.from_db_row(r.fetchone())
-
     @validate_bucket
     @require("application/json")
     def on_get(self, req: falcon.Request, resp: falcon.Response):
@@ -35,7 +29,13 @@ class BucketResource(ApiResource):
 
 class BucketCollectionResource(ApiResource):
     """ Methods to act on the collection, e.g. creating or listing all buckets """
-    
+
+    def _get_bucket(self, name: str) -> Bucket:
+        cursor = self._db.cursor()
+        stmt = Bucket.find_statement(Bucket.name)
+        r = cursor.execute(stmt, [name])
+        return Bucket.from_db_row(r.fetchone())
+
     @require("application/json")
     def on_get(self, req: falcon.Request, resp: falcon.Response):
         """ List all buckets visible to the user """

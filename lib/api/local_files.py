@@ -1,7 +1,6 @@
 import falcon
-from ..models.bucket import Bucket
-from ..models.file import File
-from ..models.local_file import LocalFile
+from .models.file import File
+from .models.local_file import LocalFile
 from .buckets import validate_bucket
 from .files import validate_file
 from .util import require
