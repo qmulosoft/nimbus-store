@@ -82,7 +82,7 @@ def test_create_local_file(client, file_id):
     digest = hash.hexdigest()
     result = client.simulate_post(f"/buckets/default/files/{file_id}/data/{digest}", body=data, headers=headers_binary)
     assert result.status_code == 204
-    # assure that the file object was udpated with local_file id
+    # assure that the file object was updated with local_file id
     result = client.simulate_get(f"/buckets/default/files/{file_id}", headers=headers_json)
     assert result.status_code == 200
     assert result.json['local_file_id'] == digest
