@@ -5,7 +5,6 @@ from .buckets import validate_bucket
 from .files import validate_file
 from .util import require
 from .resource import ApiResource
-import sqlite3
 import hashlib
 from os.path import getsize, join
 
@@ -13,10 +12,6 @@ from os.path import getsize, join
 class LocalFileResource(ApiResource):
     """ Manages uploading and downloading of local files, which is actual, binary data """
 
-    def __init__(self, sql_conn: sqlite3.Connection, file_path: str):
-        super().__init__(sql_conn)
-        self._root = file_path
-        
     @require("application/octet-stream")
     @validate_bucket
     @validate_file

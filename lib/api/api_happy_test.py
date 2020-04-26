@@ -1,7 +1,8 @@
 import pytest
 import json
-from .test import headers_json, client, headers_binary
+from .test import headers_json, client, headers_binary, db
 from hashlib import md5
+from .models.local_file import LocalFile
 
 
 created_file_id = ""
@@ -115,3 +116,13 @@ def test_get_local_file(client, file_id, local_file_id):
     hash = md5()
     hash.update(result.content)
     assert hash.hexdigest() == local_file_id
+
+
+def test_delete_file(client, file_id, local_file_id):
+    result = client.simulate_delete(f"/buckets/default/files/{file_id}", headers=headers_json)
+    assert result.status_code == 204
+    # Make sure file data was also deleted. This isn't exposed in the API (trying to access data without a File)
+    cursor = db.cursor()
+    stmt = LocalFile.find_by_id_statement()
+    rows = cursor.execute(stmt, [local_file_id])
+    assert rows.fetchone() is None

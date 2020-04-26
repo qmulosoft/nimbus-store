@@ -138,3 +138,9 @@ class Model(metaclass=ModelMeta):
                f" VALUES ({placeholders})"
         values = [getattr(self, name).value for name, value in self.fields.items() if value.writable]
         return stmt, values + [field.value for field in extra_fields]
+
+    @classmethod
+    def delete_statement(cls, field: Field) -> str:
+        """ Returns a formatted, simple DELETE statement for a given record """
+        stmt = f"DELETE FROM [{cls.table_name}] WHERE [{field.name}] = ?"
+        return stmt

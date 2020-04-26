@@ -10,10 +10,10 @@ class API(falcon.API):
 
     def __init__(self, sql_conn: sqlite3.Connection, volume: str):
         super().__init__()
-        file_collection = FileCollectionResource(sql_conn)
-        files = FilesResource(sql_conn)
-        bucket_collection = BucketCollectionResource(sql_conn)
-        buckets = BucketResource(sql_conn)
+        file_collection = FileCollectionResource(sql_conn, volume)
+        files = FilesResource(sql_conn, volume)
+        bucket_collection = BucketCollectionResource(sql_conn, volume)
+        buckets = BucketResource(sql_conn, volume)
         data = LocalFileResource(sql_conn, volume)
         # If GETting a file, id is [file].id, if POSTing, if is [local_file].id
         # e.g. on GET it is a uuid.v4, on POST it is a md5 sum
