@@ -40,7 +40,6 @@ class LocalFileResource(ApiResource):
         self._db.commit()
         resp.status = falcon.HTTP_NO_CONTENT
 
-    @require("application/octet-stream")
     @validate_bucket
     @validate_file
     def on_get(self, req: falcon.Request, resp: falcon.Response, checksum: str):
@@ -56,6 +55,7 @@ class LocalFileResource(ApiResource):
             raise falcon.HTTPNotFound(description="Invalid checksum or missing data")
         fname = join(self._root, checksum)
         length = getsize(fname)
-        resp.content_type = "application/octet-stream"
+        resp.content_type = req.context.file.mime.value
+        resp.downloadable_as = req.context.file.name.value
         f = open(fname, "rb")
         resp.set_stream(f, length)
