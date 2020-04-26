@@ -65,7 +65,7 @@ class FileCollectionResource(ApiResource):
             self._db.commit()
             file = self._get_file(file.id.value)
         except sqlite3.Error as e:
-            raise falcon.HTTPBadRequest("Invalid value for bucket", str(e))
+            raise falcon.HTTPBadRequest("Invalid value for file", str(e))
         resp.status = falcon.HTTP_201
         resp.media = file.to_dict()
 

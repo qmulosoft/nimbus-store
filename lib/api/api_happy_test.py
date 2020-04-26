@@ -4,6 +4,20 @@ from .test import headers_json, client, headers_binary
 from hashlib import md5
 
 
+created_file_id = ""
+created_file_data_id = ""
+
+
+@pytest.fixture()
+def file_id():
+    return created_file_id
+
+
+@pytest.fixture()
+def local_file_id():
+    return created_file_data_id
+
+
 def test_create_bucket(client):
     bucket = {
         "name": "default",
@@ -15,6 +29,20 @@ def test_create_bucket(client):
     assert result.json["desc"] == bucket["desc"]
 
 
+def test_get_bucket(client):
+    result = client.simulate_get("/buckets/default", headers=headers_json)
+    assert result.status_code == 200
+    assert result.json["name"] == "default"
+    assert result.json["desc"] == "A test bucket"
+
+
+def test_list_buckets(client):
+    result = client.simulate_get("/buckets", headers=headers_json)
+    assert result.status_code == 200
+    assert len(result.json) == 1
+    assert result.json[0]['name'] == "default"
+
+
 def test_create_duplicate_bucket(client):
     bucket = {
         "name": "default",
@@ -22,15 +50,6 @@ def test_create_duplicate_bucket(client):
     }
     result = client.simulate_post("/buckets", body=json.dumps(bucket), headers=headers_json)
     assert result.status_code == 409
-
-
-created_file_id = ""
-
-
-@pytest.fixture()
-def file_id():
-    global created_file_id
-    return created_file_id
 
 
 def test_create_file(client):
@@ -76,6 +95,7 @@ def test_get_local_file_missing(client, file_id):
 
 
 def test_create_local_file(client, file_id):
+    global created_file_data_id
     data = b"test bytes"
     hash = md5()
     hash.update(data)
@@ -86,3 +106,12 @@ def test_create_local_file(client, file_id):
     result = client.simulate_get(f"/buckets/default/files/{file_id}", headers=headers_json)
     assert result.status_code == 200
     assert result.json['local_file_id'] == digest
+    created_file_data_id = digest
+
+
+def test_get_local_file(client, file_id, local_file_id):
+    result = client.simulate_get(f"/buckets/default/files/{file_id}/data/{local_file_id}", headers=headers_binary)
+    assert result.status_code == 200
+    hash = md5()
+    hash.update(result.content)
+    assert hash.hexdigest() == local_file_id

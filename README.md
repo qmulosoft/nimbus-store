@@ -5,6 +5,7 @@ This is the super-early-don't-use-it-or-even-look-at-it state version of the sto
 ## Immediate next steps
 - Better, more, idempotent testing
 - Auth and encryption (maybe)
+- Garbage Collecting unclaimed files
 
 ## Contributing
 

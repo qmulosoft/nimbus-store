@@ -6,6 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+coverage = "*"
 falcon = "*"
 pytest = "*"
 migrate = { git="https://github.com/qmulosoft/nimbus-migrate.git", ref="5194eb3" }
