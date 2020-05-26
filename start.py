@@ -33,6 +33,7 @@ sql_conn = sqlite3.connect(args.db)
 if args.migrate:
     import migrate
     migration = migrate.Migration(os.path.dirname(os.path.realpath(__file__)) + "/db/sqlite/migrations", sql_conn)
+    migration()
 
 app = API(sql_conn, args.volume)
 

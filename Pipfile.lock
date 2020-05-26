@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ffa5ecd5164f528ab0fd447ef0e47fad18e8553e9a39ff6622270e36cde19d37"
+            "sha256": "fc91be84e1fc270203dc010adcdea71e01580176fbe7ae9ce16de23945e97a24"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -80,7 +80,7 @@
         },
         "migrate": {
             "git": "https://github.com/qmulosoft/nimbus-migrate.git",
-            "ref": "5194eb384303349a6d5bdea740099287794d80cd"
+            "ref": "9fdd36954f7e181e4c9c0c5affedd34d11c8178b"
         },
         "more-itertools": {
             "hashes": [

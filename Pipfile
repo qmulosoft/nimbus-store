@@ -9,4 +9,4 @@ verify_ssl = true
 coverage = "*"
 falcon = "*"
 pytest = "*"
-migrate = { git="https://github.com/qmulosoft/nimbus-migrate.git", ref="5194eb3" }
+migrate = { git="https://github.com/qmulosoft/nimbus-migrate.git", ref="9fdd369" }
