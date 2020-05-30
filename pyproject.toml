@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "nimbus-store"
+version = "0.1.0"
+description = "Nimbus Cloud Storage Service"
+authors = ["Zach Bullough <zach@ordermygear.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+falcon = "^2.0.0"
+migrate = {git = "https://github.com/qmulosoft/nimbus-migrate.git"}
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.4.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

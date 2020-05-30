@@ -3,7 +3,7 @@
 import argparse
 import os
 import sqlite3
-from lib.api import API
+from src.nimbus_store import API
 from wsgiref import simple_server
 
 parser = argparse.ArgumentParser(
