@@ -31,7 +31,7 @@ args = parser.parse_args()
 sql_conn = sqlite3.connect(args.db)
 
 if args.migrate:
-    import migrate
+    import migrate as migrate
     migration = migrate.Migration(os.path.dirname(os.path.realpath(__file__)) + "/db/sqlite/migrations", sql_conn)
     migration()
 

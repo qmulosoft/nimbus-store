@@ -7,11 +7,11 @@ authors = ["Zach Bullough <zach@ordermygear.com>"]
 [tool.poetry.dependencies]
 python = "^3.6"
 falcon = "^2.0.0"
-migrate = {git = "https://github.com/qmulosoft/nimbus-migrate.git"}
+nimbus_migrate = "^0.1.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.4.2"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry>=1.00"]
 build-backend = "poetry.masonry.api"
