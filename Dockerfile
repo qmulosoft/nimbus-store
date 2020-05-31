@@ -1,6 +1,7 @@
 FROM python:3.8
 
-RUN mkdir -p /home/nimbus/store/data/volume
+RUN mkdir -p /home/nimbus/store/data
+RUN mkdir /home/nimbus/store/volume
 RUN mkdir /home/nimbus/store/app
 RUN pip install poetry
 COPY poetry.lock pyproject.toml /home/nimbus/store/app/
@@ -12,4 +13,4 @@ COPY db /home/nimbus/store/app/db
 WORKDIR /home/nimbus/store/app
 EXPOSE 4242
 
-CMD python3 start.py /home/nimbus/store/data/volume /home/nimbus/store/data/db.sqlite -m
+CMD python3 start.py /home/nimbus/store/volume /home/nimbus/store/data/db.sqlite -m
